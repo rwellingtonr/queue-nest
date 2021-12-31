@@ -4,31 +4,22 @@ import { CreateUserController } from './create-user/create-user.controller';
 import { ConfigModule } from '@nestjs/config';
 import { MailerModule } from '@nestjs-modules/mailer';
 
-const {
-  REDIS_HOST,
-  REDIS_PORT,
-  EMAIL_HOST,
-  EMAIL_PORT,
-  EMAIL_USER,
-  EMAIL_PASS,
-} = process.env;
-
 @Module({
   imports: [
     ConfigModule.forRoot(),
     BullModule.forRoot({
       redis: {
-        host: REDIS_HOST,
-        port: Number(REDIS_PORT),
+        host: process.env.REDIS_HOST,
+        port: Number(process.env.REDIS_PORT),
       },
     }),
     MailerModule.forRoot({
       transport: {
-        host: EMAIL_HOST,
-        port: Number(EMAIL_PORT),
+        host: process.env.EMAIL_HOST,
+        port: 587,
         auth: {
-          user: EMAIL_USER,
-          pass: EMAIL_PASS,
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
         },
       },
     }),

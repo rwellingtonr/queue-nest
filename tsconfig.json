@@ -19,6 +19,6 @@
     "noFallthroughCasesInSwitch": false,
     "lib": ["es6"],
     "resolveJsonModule": true,
-    "strict": false,
+    "strict": false
   }
 }
